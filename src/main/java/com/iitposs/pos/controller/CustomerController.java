@@ -29,5 +29,5 @@ public class CustomerController {
         return message;
     }
 
-    @GetMapping
+    //@GetMapping
 }
