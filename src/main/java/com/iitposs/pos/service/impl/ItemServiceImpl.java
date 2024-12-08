@@ -1,11 +1,11 @@
 package com.iitposs.pos.service.impl;
 
+import com.iitposs.pos.Exception.NotFoundException;
 import com.iitposs.pos.dto.paginated.PaginatedResponseItemDTO;
 import com.iitposs.pos.dto.request.ItemSaveRequestDTO;
-import com.iitposs.pos.dto.response.ItemAllDetailsResponseDTo;
+import com.iitposs.pos.dto.response.ItemAllDetailsResponseDTO;
 import com.iitposs.pos.dto.response.ItemResponseDTO;
 import com.iitposs.pos.entity.Item;
-import com.iitposs.pos.exception.NotFoundException;
 import com.iitposs.pos.repo.ItemRepo;
 import com.iitposs.pos.service.ItemService;
 import org.modelmapper.ModelMapper;
@@ -33,7 +33,7 @@ public class ItemServiceImpl implements ItemService {
 
         if (!itemRepo.existsById(item.getItemID())) {
             itemRepo.save(item);
-            return "Item saved successfully";
+            return "saved...";
         } else {
             return "Item already exists";
         }
@@ -91,12 +91,12 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public List<ItemAllDetailsResponseDTo> getAllItemsByState(boolean state) {
+    public List<ItemAllDetailsResponseDTO> getAllItemsByState(boolean state) {
         List<Item> items = itemRepo.findAllByActiveState(state);
-        List<ItemAllDetailsResponseDTo> responseDTos = new ArrayList<>();
+        List<ItemAllDetailsResponseDTO> responseDTos = new ArrayList<>();
 
         for (Item item : items) {
-            responseDTos.add(new ItemAllDetailsResponseDTo(
+            responseDTos.add(new ItemAllDetailsResponseDTO(
                     item.getItemID(),
                     item.getName(),
                     item.getMeasuringType(),

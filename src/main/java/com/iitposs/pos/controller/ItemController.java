@@ -2,7 +2,7 @@ package com.iitposs.pos.controller;
 
 import com.iitposs.pos.dto.paginated.PaginatedResponseItemDTO;
 import com.iitposs.pos.dto.request.ItemSaveRequestDTO;
-import com.iitposs.pos.dto.response.ItemAllDetailsResponseDTo;
+//import com.iitposs.pos.dto.response.ItemAllDetailsResponseDTo;
 import com.iitposs.pos.dto.response.ItemResponseDTO;
 import com.iitposs.pos.service.ItemService;
 import com.iitposs.pos.util.enums.StandardResponse;

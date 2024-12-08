@@ -1,5 +1,6 @@
 package com.iitposs.pos.service.impl;
 
+import com.iitposs.pos.Exception.NotFoundException;
 import com.iitposs.pos.dto.request.CustomerSaveRequestDTO;
 import com.iitposs.pos.dto.response.CustomerAllDetailsResponseDTO;
 import com.iitposs.pos.dto.response.CustomerResposeDTO;
@@ -79,18 +80,24 @@ return "Customer not found";
 
         List<CustomerResposeDTO> responseDTOs = new ArrayList<>();
 
-        for(Customer customer: customers) {
+        if(!customers.isEmpty()){
+            for(Customer customer: customers) {
 
-            responseDTOs.add(new CustomerResposeDTO(
-                    customer.getCustomerName(),
-                    customer.getCustomerAddress(),
-                    customer.getSalary(),
-                    customer.getContacts(),
-                    customer.getNic(),
-                    customer.isActiveSate()
-            ));
+                responseDTOs.add(new CustomerResposeDTO(
+                        customer.getCustomerName(),
+                        customer.getCustomerAddress(),
+                        customer.getSalary(),
+                        customer.getContacts(),
+                        customer.getNic(),
+                        customer.isActiveSate()
+                ));
+            }
+            return responseDTOs;
         }
-        return responseDTOs;
+        else{
+            throw new NotFoundException("No customers found");
+        }
+
     }
 
     @Override
